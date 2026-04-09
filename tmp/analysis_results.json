@@ -1,0 +1,878 @@
+{
+  "stats": {
+    "cases": 1477,
+    "schedules": 1462,
+    "equipment": 65,
+    "engineers": 9,
+    "notes": 0,
+    "maintenance": 0,
+    "routine_work": 96,
+    "routine_work_tasks": 7
+  },
+  "cases": {
+    "duplicates": [
+      {
+        "workOrderId": "WO-98751055",
+        "count": 2
+      }
+    ],
+    "missingData": [
+      {
+        "id": "(1F外面)-1782748800000-gq9jp",
+        "workOrderId": "",
+        "productName": "冷卻水搭"
+      },
+      {
+        "id": "(5F)-1782748800000-1bfy4",
+        "workOrderId": "",
+        "productName": "靜音式空壓機"
+      },
+      {
+        "id": "(5F)-1782748800000-glfjf",
+        "workOrderId": "",
+        "productName": "靜音式空壓機"
+      },
+      {
+        "id": "CASE-98751055",
+        "workOrderId": "WO-98751055",
+        "productName": ""
+      },
+      {
+        "id": "S200-05免-111-1774886400000-2nvww",
+        "workOrderId": "",
+        "productName": "0.2T拉力機"
+      },
+      {
+        "id": "S200-05內-012-1769702400000-0st3b",
+        "workOrderId": "",
+        "productName": "直流定電流產生器"
+      },
+      {
+        "id": "S200-05內-019-1769702400000-h55zl",
+        "workOrderId": "",
+        "productName": "耐燃試驗機"
+      },
+      {
+        "id": "S200-05內-020-1769702400000-i46p4",
+        "workOrderId": "",
+        "productName": "落球衝擊試驗機"
+      },
+      {
+        "id": "S200-05內-022-1769702400000-gjvux",
+        "workOrderId": "",
+        "productName": "直流定電流產生器"
+      },
+      {
+        "id": "S200-05內-023-1769702400000-q07nq",
+        "workOrderId": "",
+        "productName": "溫升-熱循環試驗機"
+      },
+      {
+        "id": "S200-05內-028-1769702400000-unpzn",
+        "workOrderId": "",
+        "productName": "可靠性試驗機"
+      },
+      {
+        "id": "S200-05內-033-1769702400000-6xq6t",
+        "workOrderId": "",
+        "productName": "溫升-熱循環試驗機"
+      },
+      {
+        "id": "S200-05內-034-1769702400000-46s1j",
+        "workOrderId": "",
+        "productName": "溫升-熱循環試驗機"
+      },
+      {
+        "id": "S200-05內-037-1769702400000-8macn",
+        "workOrderId": "",
+        "productName": "可靠性試驗機"
+      },
+      {
+        "id": "S200-05內-038-1769702400000-95rue",
+        "workOrderId": "",
+        "productName": "溫升-熱循環試驗機"
+      },
+      {
+        "id": "S200-05內-040-1769702400000-srqaw",
+        "workOrderId": "",
+        "productName": "可靠性試驗機"
+      },
+      {
+        "id": "S200-05內-047-1769702400000-ur5fm",
+        "workOrderId": "",
+        "productName": "直流定電流產生器"
+      },
+      {
+        "id": "S200-05內-055-1769702400000-ccxz1",
+        "workOrderId": "",
+        "productName": "溫升-熱循環試驗機"
+      },
+      {
+        "id": "S200-05內-077-1772035200000-sellz",
+        "workOrderId": "",
+        "productName": "直流定電流產生器"
+      },
+      {
+        "id": "S200-05內-087-1772035200000-f47ym",
+        "workOrderId": "",
+        "productName": "低溫恆溫水槽"
+      },
+      {
+        "id": "S200-05內-093-1772035200000-9ue0x",
+        "workOrderId": "",
+        "productName": "電源引線彎曲試驗機"
+      },
+      {
+        "id": "S200-05內-123-1772035200000-6yphw",
+        "workOrderId": "",
+        "productName": "老化試驗機"
+      },
+      {
+        "id": "S200-05內-135-1772035200000-hdqxz",
+        "workOrderId": "",
+        "productName": "電子鎖作動耐久試驗機"
+      },
+      {
+        "id": "S200-05內-136-1772035200000-yqu6g",
+        "workOrderId": "",
+        "productName": "擺盪測試機"
+      },
+      {
+        "id": "S200-05內-138-1772035200000-9xjr3",
+        "workOrderId": "",
+        "productName": "低溫恆溫水槽"
+      },
+      {
+        "id": "S200-05內-140-1772035200000-pnzcc",
+        "workOrderId": "",
+        "productName": "自動插拔試驗機"
+      },
+      {
+        "id": "S200-05外-003-1774886400000-jfwww",
+        "workOrderId": "",
+        "productName": "3T微電腦拉力試驗機"
+      },
+      {
+        "id": "S200-05外-008-1769702400000-h6upv",
+        "workOrderId": "",
+        "productName": "老化試驗機"
+      },
+      {
+        "id": "S200-05外-013-1774886400000-c8ajv",
+        "workOrderId": "",
+        "productName": "振動疲勞試驗機"
+      },
+      {
+        "id": "S200-05外-014-1772035200000-ok1k6",
+        "workOrderId": "",
+        "productName": "老化試驗機"
+      },
+      {
+        "id": "S200-05外-029-1774886400000-3wktu",
+        "workOrderId": "",
+        "productName": "溫升-熱循環試驗機"
+      },
+      {
+        "id": "S200-05外-039-1774886400000-lilv2",
+        "workOrderId": "",
+        "productName": "直流電源供應器"
+      },
+      {
+        "id": "S200-05外-041-1769702400000-kuhwu",
+        "workOrderId": "",
+        "productName": "冷熱衝擊試驗機"
+      },
+      {
+        "id": "S200-05外-042-1769702400000-ayss6",
+        "workOrderId": "",
+        "productName": "振動疲勞試驗機_複合式"
+      },
+      {
+        "id": "S200-05外-043-1769702400000-od6yf",
+        "workOrderId": "",
+        "productName": "恆溫恆濕試驗機_複合式"
+      },
+      {
+        "id": "S200-05外-050-1769702400000-5krpo",
+        "workOrderId": "",
+        "productName": "高壓耐壓器"
+      },
+      {
+        "id": "S200-05外-051-1772035200000-sbkxv",
+        "workOrderId": "",
+        "productName": "耐水試驗機"
+      },
+      {
+        "id": "S200-05外-052-1769702400000-uz9kd",
+        "workOrderId": "",
+        "productName": "耐塵試驗機"
+      },
+      {
+        "id": "S200-05外-053-1774886400000-nr34q",
+        "workOrderId": "",
+        "productName": "換氣式老化試驗機"
+      },
+      {
+        "id": "S200-05外-060-1772035200000-3ro60",
+        "workOrderId": "",
+        "productName": "連接器密封性測試機"
+      },
+      {
+        "id": "S200-05外-069-1769702400000-8lv5h",
+        "workOrderId": "",
+        "productName": "重力式落下衝擊試驗機"
+      },
+      {
+        "id": "S200-05外-071-1769702400000-0wj9s",
+        "workOrderId": "",
+        "productName": "高壓洗車試驗機"
+      },
+      {
+        "id": "S200-05外-081-1774886400000-3t8hi",
+        "workOrderId": "",
+        "productName": "可見光分光譜儀"
+      },
+      {
+        "id": "S200-05外-085-1772035200000-mholt",
+        "workOrderId": "",
+        "productName": "可程式恆溫恆濕機"
+      },
+      {
+        "id": "S200-05外-088-1774886400000-usm06",
+        "workOrderId": "",
+        "productName": "氙弧燈耐候試驗機"
+      },
+      {
+        "id": "S200-05外-095-1772035200000-slm3u",
+        "workOrderId": "",
+        "productName": "換氣式老化試驗機"
+      },
+      {
+        "id": "S200-05外-098-1774886400000-1x5qt",
+        "workOrderId": "",
+        "productName": "交直流絕緣阻抗耐壓試驗機"
+      },
+      {
+        "id": "S200-05外-100-1774886400000-ofpse",
+        "workOrderId": "",
+        "productName": "可程式恆溫恆濕機"
+      },
+      {
+        "id": "S200-05外-105-1774886400000-scsdz",
+        "workOrderId": "",
+        "productName": "直流電源供應器"
+      },
+      {
+        "id": "S200-05外-106-1774886400000-qwbws",
+        "workOrderId": "",
+        "productName": "直流電子負載"
+      },
+      {
+        "id": "S200-05外-108-1774886400000-rzotw",
+        "workOrderId": "",
+        "productName": "全自動影像量測儀"
+      },
+      {
+        "id": "S200-05外-111-1774886400000-1xzfo",
+        "workOrderId": "",
+        "productName": "2直流電子負載"
+      },
+      {
+        "id": "S200-05外-116-1772035200000-gl1gq",
+        "workOrderId": "",
+        "productName": "2.5D光學影像量測儀"
+      },
+      {
+        "id": "S200-05外-123-1774886400000-wdrjw",
+        "workOrderId": "",
+        "productName": "直流電源供應器"
+      },
+      {
+        "id": "S200-05外-124-1774886400000-2u1o8",
+        "workOrderId": "",
+        "productName": "直流電子負載"
+      },
+      {
+        "id": "S200-05外-127-1772035200000-9gvi3",
+        "workOrderId": "",
+        "productName": "溫升-熱循環試驗機"
+      },
+      {
+        "id": "S200-05外-131-1772035200000-1cvyh",
+        "workOrderId": "",
+        "productName": "溫升-熱循環試驗機"
+      },
+      {
+        "id": "S200-05外-134-1774886400000-wiw43",
+        "workOrderId": "",
+        "productName": "可程式恆溫恆濕機"
+      },
+      {
+        "id": "S200-05外-135-1772035200000-9t1zm",
+        "workOrderId": "",
+        "productName": "鹽水噴霧試驗機"
+      },
+      {
+        "id": "S200-05外-138-1774886400000-xesk1",
+        "workOrderId": "",
+        "productName": "直流電源供應器"
+      },
+      {
+        "id": "S200-05外-139-1774886400000-8v85j",
+        "workOrderId": "",
+        "productName": "直流電源供應器"
+      },
+      {
+        "id": "S200-05外-140-1774886400000-z3w7x",
+        "workOrderId": "",
+        "productName": "直流電子負載"
+      },
+      {
+        "id": "S200-05外-141-1774886400000-0zmjm",
+        "workOrderId": "",
+        "productName": "直流電子負載"
+      },
+      {
+        "id": "S200-05外-143-1772035200000-8j4fg",
+        "workOrderId": "",
+        "productName": "自動插拔試驗機"
+      },
+      {
+        "id": "S200-05外-144-1772035200000-xo7p9",
+        "workOrderId": "",
+        "productName": "/S200-05內-070耐臭氧老化試驗機"
+      },
+      {
+        "id": "S200-05外-145-1772035200000-5yrmi",
+        "workOrderId": "",
+        "productName": "振動疲勞試驗機_複合式"
+      },
+      {
+        "id": "S200-05外-146-1772035200000-l0xrt",
+        "workOrderId": "",
+        "productName": "恆溫恆濕試驗機_複合式"
+      },
+      {
+        "id": "S200-05外-152-1774886400000-javj4",
+        "workOrderId": "",
+        "productName": "冷熱衝擊試驗機"
+      },
+      {
+        "id": "S200-05外-153-1774886400000-ybjpf",
+        "workOrderId": "",
+        "productName": "5T微電腦拉力試驗機"
+      },
+      {
+        "id": "S200-05外-154-1769702400000-th36p",
+        "workOrderId": "",
+        "productName": "2.5D光學影像量測儀"
+      },
+      {
+        "id": "S200-05外-156-1769702400000-u32wz",
+        "workOrderId": "",
+        "productName": "耐壓分析儀"
+      },
+      {
+        "id": "S200-05外-159-1769702400000-jin26",
+        "workOrderId": "",
+        "productName": "直流電源供應器"
+      },
+      {
+        "id": "S200-05外-162-1769702400000-ta6hk",
+        "workOrderId": "",
+        "productName": "換氣式老化試驗機"
+      },
+      {
+        "id": "S200-05外-168-1769702400000-gl8vr",
+        "workOrderId": "",
+        "productName": "溫升-熱循環試驗機"
+      },
+      {
+        "id": "S200-05外-169-1769702400000-u6wo3",
+        "workOrderId": "",
+        "productName": "溫升-熱循環試驗機"
+      },
+      {
+        "id": "S200-05外-177-1769702400000-jfnec",
+        "workOrderId": "",
+        "productName": "鹽水噴霧試驗機"
+      },
+      {
+        "id": "S200-05外-178-1772035200000-rspzs",
+        "workOrderId": "",
+        "productName": "自動插拔試驗機"
+      },
+      {
+        "id": "S200-05外-185-1772035200000-1vycw",
+        "workOrderId": "",
+        "productName": "VANTA 有害物質分析儀(XRF)"
+      },
+      {
+        "id": "S200-05外-187-1774886400000-6yrj5",
+        "workOrderId": "",
+        "productName": "AC足瓦電源供應器"
+      },
+      {
+        "id": "S200-05外-188-1774886400000-ruqy8",
+        "workOrderId": "",
+        "productName": "AC足瓦電子負載"
+      },
+      {
+        "id": "S200-05外-193-1774886400000-e124l",
+        "workOrderId": "",
+        "productName": "傅立葉轉換紅外線光譜儀FTIR"
+      },
+      {
+        "id": "S200-05外-196-1772035200000-r48kt",
+        "workOrderId": "",
+        "productName": "直流電源供應器"
+      },
+      {
+        "id": "S200-05外-197-1772035200000-66kpw",
+        "workOrderId": "",
+        "productName": "直流電源供應器"
+      },
+      {
+        "id": "S200-05外-198-1772035200000-edrn1",
+        "workOrderId": "",
+        "productName": "直流電子負載"
+      },
+      {
+        "id": "S200-05外-199-1772035200000-wmfba",
+        "workOrderId": "",
+        "productName": "直流電源供應器"
+      },
+      {
+        "id": "S200-05外-200-1772035200000-onc8k",
+        "workOrderId": "",
+        "productName": "直流電源供應器"
+      },
+      {
+        "id": "S200-05外-201-1772035200000-jkz2t",
+        "workOrderId": "",
+        "productName": "直流電子負載"
+      },
+      {
+        "id": "T000-05外-001-1769702400000-oim56",
+        "workOrderId": "",
+        "productName": "老化試驗機"
+      },
+      {
+        "id": "T000-05外-004-1774886400000-jomzn",
+        "workOrderId": "",
+        "productName": "可程式恆溫恆濕機"
+      },
+      {
+        "id": "T000-05外-007-1772035200000-3yi4t",
+        "workOrderId": "",
+        "productName": "可程式恆溫恆濕機"
+      },
+      {
+        "id": "樣品準備室-1782748800000-afvhh",
+        "workOrderId": "",
+        "productName": "金相切割機"
+      },
+      {
+        "id": "樣品準備室-1782748800000-iwg9z",
+        "workOrderId": "",
+        "productName": "自動鑲埋機"
+      }
+    ],
+    "inconsistentStatus": []
+  },
+  "schedules": {
+    "overlaps": [
+      {
+        "equipmentName": "老化試驗機 (150℃)",
+        "date": "2026-03-13",
+        "count": 2
+      },
+      {
+        "equipmentName": "老化試驗機 (150℃)",
+        "date": "2026-03-14",
+        "count": 2
+      },
+      {
+        "equipmentName": "老化試驗機 (150℃)",
+        "date": "2026-03-15",
+        "count": 2
+      },
+      {
+        "equipmentName": "老化試驗機 (150℃)",
+        "date": "2026-03-16",
+        "count": 3
+      },
+      {
+        "equipmentName": "老化試驗機 (150℃)",
+        "date": "2026-03-17",
+        "count": 3
+      },
+      {
+        "equipmentName": "老化試驗機 (150℃)",
+        "date": "2026-03-18",
+        "count": 3
+      },
+      {
+        "equipmentName": "老化試驗機 (150℃)",
+        "date": "2026-03-19",
+        "count": 3
+      },
+      {
+        "equipmentName": "老化試驗機 (150℃)",
+        "date": "2026-03-20",
+        "count": 3
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-03-09",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-03-10",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-03-18",
+        "count": 3
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-03-26",
+        "count": 3
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-03-27",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-04-01",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-04-02",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-04-03",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-04-04",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-04-05",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-04-06",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-04-07",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-04-08",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機-40~150",
+        "date": "2026-04-09",
+        "count": 2
+      },
+      {
+        "equipmentName": "複合式(恆溫恆濕)試驗機",
+        "date": "2026-03-20",
+        "count": 2
+      },
+      {
+        "equipmentName": "複合式(恆溫恆濕)試驗機",
+        "date": "2026-03-21",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-13",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-14",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-15",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-16",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-17",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-18",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-19",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-20",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-21",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-22",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-23",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-24",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-25",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-26",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-27",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-28",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-29",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-30",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-03-31",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-01",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-02",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-03",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-04",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-05",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-06",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-07",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-08",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-09",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-10",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-11",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-12",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-13",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-14",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-15",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-16",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-17",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-18",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-19",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-20",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-21",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-22",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-23",
+        "count": 2
+      },
+      {
+        "equipmentName": "恆溫恆濕機(束帶廠)",
+        "date": "2026-04-24",
+        "count": 2
+      }
+    ],
+    "invalidEquipment": []
+  },
+  "equipment": {
+    "duplicates": [
+      {
+        "name": "恆溫恆溼機-60~150",
+        "count": 2
+      },
+      {
+        "name": "恆溫恆濕機(束帶廠)",
+        "count": 2
+      },
+      {
+        "name": "溫升-熱循環試驗機",
+        "count": 10
+      },
+      {
+        "name": "無紙式記錄器YOKOGAWA",
+        "count": 5
+      },
+      {
+        "name": "無紙式記錄器鴻泰",
+        "count": 5
+      },
+      {
+        "name": "直流定電流產生器(19A)",
+        "count": 2
+      },
+      {
+        "name": "直流電源供應器(2-240A)",
+        "count": 3
+      },
+      {
+        "name": "自動插拔試驗機",
+        "count": 2
+      },
+      {
+        "name": "致茂直流電源供應器(540A)",
+        "count": 2
+      },
+      {
+        "name": "致茂直流電源供應器(810A)",
+        "count": 2
+      },
+      {
+        "name": "複合式(恆溫恆濕)試驗機",
+        "count": 2
+      },
+      {
+        "name": "複合式振動試驗機(振動)",
+        "count": 2
+      }
+    ]
+  },
+  "engineers": {
+    "duplicates": []
+  }
+}

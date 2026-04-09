@@ -1,0 +1,28 @@
+﻿[Watcher] Monitoring C:\Users\USER\Desktop\AI?砍撱箸?\LabNexus-main\LabNexus-main\plm_data\project_list.xlsx...
+[Sync] Triggered at 2026-04-08T15:22:59.454Z
+[Shadow Copy] Success: C:\Users\USER\Desktop\AI?砍撱箸?\LabNexus-main\LabNexus-main\plm_data\project_list.xlsx -> C:\Users\USER\Desktop\AI?砍撱箸?\LabNexus-main\LabNexus-main\tmp\plm_sync_temp.xlsx
+node : [Sync] Error proces
+sing Excel: TypeError: XLS
+X.readFile is not a functi
+on
+位於 線路:1 字元:1
++ node scripts\plm-sync-wa
+tcher.mjs 2>&1 | Out-File 
+-FilePath sync_erro ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: ([  
+  Sync] Error pr... not   
+  a function:String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+    at runSync (file:///C:
+/Users/USER/Desktop/AI%E6%
+9C%AC%E5%9C%B0%E5%BB%BA%E6
+%A7%8B/LabNexus-main/LabNe
+xus-main/scripts/plm-sync-
+watcher.mjs:224:31)

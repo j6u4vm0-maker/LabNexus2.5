@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 225 17% 95%; /* #F0F1F4 */
+    --foreground: 222 84% 5%; /* Dark blue-black for text */
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 84% 5%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 84% 5%;
+
+    --primary: 66 85% 54%; /* KST Lime #E1F32C */
+    --primary-foreground: 217 100% 17%; /* KST Navy #002157 */
+
+    --secondary: 220 14.3% 90%;
+    --secondary-foreground: 222 47.4% 11.2%;
+
+    --muted: 220 14.3% 90%;
+    --muted-foreground: 222 8.9% 53.1%;
+
+    --accent: 228 64% 44%; /* #2842BD */
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 13% 85%;
+    --input: 220 13% 85%;
+    --ring: 200 87% 57%;
+
+    --radius: 0.5rem;
+
+    /* Status Colors from User */
+    --status-experimental: 209 74% 60%; /* #4A90E2 */
+    --status-experimental-foreground: 0 0% 100%;
+    --status-review: 278 45% 47%; /* #8E44AD */
+    --status-review-foreground: 0 0% 100%;
+    --status-cancelled: 200 18% 46%; /* #607D8B */
+    --status-cancelled-foreground: 0 0% 100%;
+    --status-completed: 145 63% 42%; /* #27AE60 */
+    --status-completed-foreground: 0 0% 100%;
+    --status-delayed: 0 84% 60%;
+    --status-delayed-foreground: 0 0% 100%;
+    --status-assigned: 205 70% 53%; /* #3498DB */
+    --status-assigned-foreground: 0 0% 100%;
+    --status-closed: 210 29% 24%; /* #2C3E50 */
+    --status-closed-foreground: 0 0% 100%;
+    --status-pending: 48 90% 50%; /* #F1C40F */
+    --status-pending-foreground: 240 10% 3.9%;
+    --status-reserved: 168 76% 36%; /* #16A085 */
+    --status-reserved-foreground: 0 0% 100%;
+    --status-testing: 336 78% 48%; /* #D81B60 */
+    --status-testing-foreground: 0 0% 100%;
+    --status-verifying: 28 80% 52%; /* #E67E22 */
+    --status-verifying-foreground: 0 0% 100%;
+    --status-maintenance: 5 79% 60%; /* #E74C3C */
+    --status-maintenance-foreground: 0 0% 100%;
+    --status-inprogress: 168 76% 42%; /* #1ABC9C */
+    --status-inprogress-foreground: 240 10% 3.9%;
+
+    /* Sidebar specific colors */
+    --sidebar-background: 226 55% 15%; /* A darker shade of the primary blue */
+    --sidebar-foreground: 220 20% 85%;
+    --sidebar-primary: 200 87% 57%; /* Use accent for primary actions in sidebar */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 200 87% 57%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 227 60% 25%;
+    --sidebar-ring: 200 87% 57%;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    /* Keeping dark mode for completeness, but focusing on light mode design */
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 200 87% 57%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 228 64% 44%;
+    
+    /* Dark Sidebar */
+    --sidebar-background: 222 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 210 40% 98%;
+    --sidebar-primary-foreground: 222 47.4% 11.2%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground));
+}

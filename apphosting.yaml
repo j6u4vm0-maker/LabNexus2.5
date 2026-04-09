@@ -1,0 +1,10 @@
+# Settings to manage and configure a Firebase App Hosting backend.
+# https://firebase.google.com/docs/app-hosting/configure
+
+runConfig:
+  concurrency: 80
+  cpu: 1
+  memoryMiB: 1024
+scripts:
+  build: npm run build
+  run: npm start

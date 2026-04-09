@@ -1,0 +1,314 @@
+{
+  "entities": {
+    "Project": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Project",
+      "type": "object",
+      "description": "Represents a larger project, which can encompass multiple cases, often synchronized from PLM data sources (e.g., FAA / FAI projects).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Project entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name or title of the project."
+        },
+        "description": {
+          "type": "string",
+          "description": "A detailed description of the project objectives and scope."
+        },
+        "type": {
+          "type": "string",
+          "description": "The classification of the project, e.g., 'FAA', 'FAI', 'Research', 'Standard'."
+        },
+        "startDate": {
+          "type": "string",
+          "description": "The date and time when the project officially started.",
+          "format": "date-time"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "The planned date and time for the project completion.",
+          "format": "date-time"
+        },
+        "actualEndDate": {
+          "type": "string",
+          "description": "The actual date and time when the project was completed. This is only populated after completion.",
+          "format": "date-time"
+        },
+        "status": {
+          "type": "string",
+          "description": "The current status of the project, e.g., 'Initiated', 'In Progress', 'On Hold', 'Completed'."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "type",
+        "startDate",
+        "endDate",
+        "status"
+      ]
+    },
+    "Equipment": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Equipment",
+      "type": "object",
+      "description": "Represents a piece of laboratory equipment, including its status, location, maintenance schedule, and availability for use.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the Equipment entity."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name or common designation of the laboratory equipment."
+        },
+        "serialNumber": {
+          "type": "string",
+          "description": "The unique serial number identifying the specific equipment unit."
+        },
+        "manufacturer": {
+          "type": "string",
+          "description": "The manufacturer of the equipment."
+        },
+        "model": {
+          "type": "string",
+          "description": "The specific model designation of the equipment."
+        },
+        "location": {
+          "type": "string",
+          "description": "The physical location of the equipment within the laboratory (e.g., 'Lab 101, Bench A')."
+        },
+        "status": {
+          "type": "string",
+          "description": "The current operational status of the equipment, e.g., 'Operational', 'Under Maintenance', 'Broken', 'Calibrating'."
+        },
+        "lastMaintenanceDate": {
+          "type": "string",
+          "description": "The date and time of the last maintenance performed on the equipment.",
+          "format": "date-time"
+        },
+        "nextMaintenanceDate": {
+          "type": "string",
+          "description": "The date and time of the next scheduled maintenance for the equipment.",
+          "format": "date-time"
+        },
+        "isAvailable": {
+          "type": "boolean",
+          "description": "Indicates if the equipment is currently available for use and not scheduled for other tasks."
+        },
+        "isMultiChannel": {
+          "type": "boolean",
+          "description": "Indicates if the equipment supports multiple simultaneous work orders (multi-channel booking)."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "serialNumber",
+        "manufacturer",
+        "model",
+        "location",
+        "status",
+        "isAvailable"
+      ]
+    },
+    "Case": {
+      "title": "Case",
+      "type": "object",
+      "description": "Represents an individual laboratory case or task, tracking its status, priority, assignments, and associated resources to ensure efficient progress management.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the case." },
+        "name": { "type": "string", "description": "The name of the case (名稱)." },
+        "status": { "type": "string", "description": "The current status of the case (狀態)." },
+        "department": { "type": "string", "description": "The submitting department (送樣單位)." },
+        "creator": { "type": "string", "description": "The person who created the case (建立者)." },
+        "workOrderId": { "type": "string", "description": "The work order number (工服單號)." },
+        "productName": { "type": "string", "description": "The product name (品名)." },
+        "requiredDate": { "type": "string", "description": "The required completion date (需要日期).", "format": "date-time" },
+        "receptionDate": { "type": "string", "description": "The date the case was received (收件日期).", "format": "date-time" },
+        "estimatedCompletionDate": { "type": "string", "description": "The estimated completion date (預計測試完成日期).", "format": "date-time" },
+        "labManager": { "type": "string", "description": "The name of the assigned lab manager/engineer (檢測者)." },
+        "testItemsCount": { "type": "number", "description": "The total number of items to be tested (應測項目數)." },
+        "startDate": { "type": "string", "description": "The date testing started (開始日期).", "format": "date-time" },
+        "actualCompletionDate": { "type": "string", "description": "The actual completion date (完成日期).", "format": "date-time" },
+        "completedItemsCount": { "type": "number", "description": "The number of items that have been tested (完成項目數)." },
+        "projectId": { "type": "string", "description": "The main project number this case belongs to (專案編號)." },
+        "submissionOrder": { "type": "number", "description": "The submission order or sequence number (送件順序)." },
+        "testDetails": {
+            "type": "object",
+            "description": "Specific details for different test types (測試項目).",
+            "properties": {
+                "dimensions": { "type": "string", "description": "Dimension measurement details (測1_尺寸測量)." },
+                "force": { "type": "string", "description": "Force test details (測2_力量測試)." },
+                "electrical": { "type": "string", "description": "Electrical test details (測3_電性測試)." },
+                "material": { "type": "string", "description": "Material test details (測4_材料測試)." },
+                "environment": { "type": "string", "description": "Environmental test details (測5_環境測試)." },
+                "other": { "type": "string", "description": "Other test details (測試其他項目)." }
+            }
+        },
+        "passCount": { "type": "number", "description": "Number of items that passed testing (合格)." },
+        "failCount": { "type": "number", "description": "Number of items that failed testing (不合格)." },
+        "naCount": { "type": "number", "description": "Number of items not applicable for testing (不判定)." },
+        "auditTime": { "type": "string", "description": "The time the audit was completed (完成審核時間).", "format": "date-time" },
+        "cost": { "type": "string", "description": "The cost associated with the case (費用)." },
+        "priority": { "type": "string", "enum": ["LOW", "MEDIUM", "HIGH", "CRITICAL"] },
+        "priorityReason": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "rejectionCount": { "type": "number" },
+        "partNo": { "type": "string" }
+      },
+      "required": [
+        "id",
+        "productName",
+        "status",
+        "estimatedCompletionDate",
+        "labManager",
+        "priority",
+        "createdAt"
+      ]
+    },
+    "MaintenanceRecord": {
+      "title": "Maintenance Record",
+      "type": "object",
+      "description": "Represents a single equipment maintenance task.",
+      "properties": {
+        "id": { "type": "string" },
+        "equipmentName": { "type": "string", "description": "The name of the equipment being maintained." },
+        "equipmentId": { "type": "string", "description": "The unique ID of the equipment being maintained." },
+        "estimatedCompletionDate": { "type": "string", "description": "The estimated date for maintenance completion.", "format": "date" },
+        "engineerName": { "type": "string", "description": "The name of the assigned engineer." },
+        "status": { "type": "string", "description": "The status of the maintenance, e.g., '設備保養', '設備保養完成'." }
+      },
+      "required": ["id", "equipmentName", "equipmentId", "estimatedCompletionDate", "engineerName", "status"]
+    },
+    "Engineer": {
+      "title": "Engineer",
+      "type": "object",
+      "description": "Represents a lab engineer or staff member.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the engineer, often their name." },
+        "name": { "type": "string", "description": "The name of the engineer." }
+      },
+      "required": ["id", "name"]
+    },
+    "MachineSchedule": {
+      "title": "Machine Schedule",
+      "type": "object",
+      "description": "Represents a single booking for a piece of equipment on a specific date.",
+      "properties": {
+        "id": { "type": "string" },
+        "bookingId": { "type": "string", "description": "ID for a block of related schedules."},
+        "date": { "type": "string", "format": "date" },
+        "equipmentId": { "type": "string" },
+        "equipmentName": { "type": "string" },
+        "workOrder": { "type": "string" },
+        "productName": { "type": "string" },
+        "tester": { "type": "string" },
+        "client": { "type": "string" },
+        "notes": { "type": "string" },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The timestamp when the schedule was last updated."
+        }
+      },
+      "required": ["id", "date", "equipmentId", "equipmentName"]
+    },
+    "RoutineWork": {
+      "title": "Routine Work",
+      "type": "object",
+      "description": "Represents a monthly routine task assignment for an engineer.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the routine work record." },
+        "yearMonth": { "type": "string", "description": "The month of the task, in YYYY-MM format." },
+        "taskCategory": { "type": "string", "description": "The category of the routine task." },
+        "engineerName": { "type": "string", "description": "The name of the assigned engineer." }
+      },
+      "required": ["id", "yearMonth", "taskCategory", "engineerName"]
+    },
+    "RoutineWorkTask": {
+      "title": "Routine Work Task",
+      "type": "object",
+      "description": "Represents a category of routine work, used as a column in the schedule.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the task category." },
+        "name": { "type": "string", "description": "The name of the task category." },
+        "order": { "type": "number", "description": "The display order for the task column." }
+      },
+      "required": ["id", "name", "order"]
+    },
+    "ProjectNote": {
+      "title": "Project Note",
+      "type": "object",
+      "description": "A note or comment related to a specific project or work order.",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier for the note." },
+        "workOrderId": { "type": "string", "description": "The work order ID this note is associated with." },
+        "note": { "type": "string", "description": "The content of the note." },
+        "author": { "type": "string", "description": "The person who wrote the note." },
+        "createdAt": { "type": "string", "format": "date-time", "description": "The timestamp when the note was created." }
+      },
+      "required": ["id", "workOrderId", "note", "author", "createdAt"]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "/equipment/{equipmentId}": {
+      "schema": {
+        "$ref": "#/backend/entities/Equipment"
+      },
+      "description": "Stores all laboratory equipment."
+    },
+    "/cases/{caseId}": {
+      "schema": {
+        "$ref": "#/backend/entities/Case"
+      },
+      "description": "Stores individual laboratory cases."
+    },
+    "/maintenance/{maintenanceId}": {
+      "schema": {
+        "$ref": "#/backend/entities/MaintenanceRecord"
+      },
+      "description": "Stores all equipment maintenance records."
+    },
+    "/engineers/{engineerId}": {
+      "schema": {
+        "$ref": "#/backend/entities/Engineer"
+      },
+      "description": "Stores all lab engineers and staff members."
+    },
+    "/schedules/{scheduleId}": {
+      "schema": {
+        "$ref": "#/backend/entities/MachineSchedule"
+      },
+      "description": "Stores all machine scheduling records."
+    },
+    "/routine-work/{workId}": {
+      "schema": {
+        "$ref": "#/backend/entities/RoutineWork"
+      },
+      "description": "Stores all routine work assignments."
+    },
+    "/routine-work-tasks/{taskId}": {
+      "schema": {
+        "$ref": "#/backend/entities/RoutineWorkTask"
+      },
+      "description": "Stores the categories for routine work."
+    },
+    "/notes/{noteId}": {
+      "schema": {
+        "$ref": "#/backend/entities/ProjectNote"
+      },
+      "description": "Stores all notes related to projects/work orders."
+    }
+  }
+}

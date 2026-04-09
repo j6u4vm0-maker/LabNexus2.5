@@ -1,0 +1,44 @@
+{
+  "counts": {
+    "db": 38,
+    "frontend": 34
+  },
+  "discrepancy": [
+    {
+      "id": "T115033011",
+      "workOrderId": "T115033011",
+      "dbStatus": "已指派",
+      "mappedStatus": "已完成",
+      "estimatedDate": "2026/04/08",
+      "actualDate": " ",
+      "reason": "Excluded (Terminal Status)"
+    },
+    {
+      "id": "C115033007",
+      "workOrderId": "C115033007",
+      "dbStatus": "已指派",
+      "mappedStatus": "已完成",
+      "estimatedDate": "2026/04/08",
+      "actualDate": " ",
+      "reason": "Excluded (Terminal Status)"
+    },
+    {
+      "id": "C115033008",
+      "workOrderId": "C115033008",
+      "dbStatus": "已指派",
+      "mappedStatus": "已完成",
+      "estimatedDate": "2026/04/08",
+      "actualDate": " ",
+      "reason": "Excluded (Terminal Status)"
+    },
+    {
+      "id": "C115033011",
+      "workOrderId": "C115033011",
+      "dbStatus": "已指派",
+      "mappedStatus": "已完成",
+      "estimatedDate": "2026/04/08",
+      "actualDate": " ",
+      "reason": "Excluded (Terminal Status)"
+    }
+  ]
+}
