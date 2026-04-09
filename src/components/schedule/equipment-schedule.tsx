@@ -45,6 +45,28 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/comp
 import * as XLSX from 'xlsx-js-style';
 import { Textarea } from '@/components/ui/textarea';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import {
+  DndContext,
+  DragOverlay,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+  DragStartEvent,
+  useDraggable,
+  useDroppable,
+} from '@dnd-kit/core';
+import { restrictToWindowEdges } from '@dnd-kit/modifiers';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 
 const EQUIPMENT_COLORS = [
@@ -64,6 +86,129 @@ interface EquipmentScheduleProps {
   projects: ProjectData[];
   user: UserInfo;
 }
+
+const DroppableCell = ({ id, children, className, style, onClick }: { id: string, children: React.ReactNode, className?: string, style?: React.CSSProperties, onClick?: () => void }) => {
+  const { isOver, setNodeRef } = useDroppable({ id });
+  return (
+    <div
+      ref={setNodeRef}
+      className={cn(className, isOver && "bg-blue-50/50 shadow-inner")}
+      style={style}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
+};
+
+const DraggableEventCard = ({ 
+  event, 
+  style, 
+  eventStyle, 
+  color, 
+  canEdit, 
+  isCalibration, 
+  onEditClick, 
+  onDeleteClick,
+  isDragging
+}: { 
+  event: GanttEvent, 
+  style: React.CSSProperties, 
+  eventStyle: React.CSSProperties,
+  color: string, 
+  canEdit: boolean, 
+  isCalibration: boolean, 
+  onEditClick: (event: GanttEvent) => void, 
+  onDeleteClick: () => void,
+  isDragging: boolean
+}) => {
+  const { attributes, listeners, setNodeRef, transform, isDragging: isDndDragging } = useDraggable({
+    id: event.id,
+    disabled: !canEdit || isCalibration,
+  });
+
+  const dndStyle = transform ? {
+    transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
+  } : undefined;
+
+  // Combination of original grid overlay style and DND transform
+  const combinedStyle: React.CSSProperties = {
+    ...style,
+    ...dndStyle,
+    opacity: isDragging || isDndDragging ? 0.5 : 1,
+    scale: isDragging || isDndDragging ? '1.02' : '1',
+    zIndex: isDragging || isDndDragging ? 50 : 20,
+    transition: 'transform 0s, scale 0.2s',
+  };
+
+  return (
+    <div ref={setNodeRef} style={combinedStyle} {...attributes} {...listeners}>
+      <Popover>
+        <PopoverTrigger asChild>
+          <div 
+            style={eventStyle} 
+            className={cn(
+              "m-0 p-2 rounded-lg border-2 flex flex-col justify-start overflow-hidden group",
+              !isCalibration && canEdit && "cursor-grab active:cursor-grabbing hover:shadow-md transition-shadow"
+            )}
+          >
+            <p className="font-bold text-xs truncate" style={{ color }}>{event.workOrder}</p>
+            <p className="text-xs truncate" style={{ color: `${color}dd` }}>{event.productName}</p>
+            <p className="text-xs truncate mt-auto pt-1" style={{ color: `${color}cc` }}>
+              {event.client}
+            </p>
+          </div>
+        </PopoverTrigger>
+        <PopoverContent className="w-80" side="right" align="start">
+          <div className="space-y-3">
+            <h4 className="font-bold">{event.productName}</h4>
+            <div className="flex items-center gap-1.5 text-xs">
+              <div className="flex items-center gap-1.5 text-slate-500 font-semibold w-24 shrink-0">
+                <ClipboardList size={14} />
+                <span>工單號碼</span>
+              </div>
+              <div className="font-medium break-words text-slate-700">{event.workOrder}</div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs">
+              <div className="flex items-center gap-1.5 text-slate-500 font-semibold w-24 shrink-0">
+                <User size={14} />
+                <span>測試人員</span>
+              </div>
+              <div className="font-medium break-words text-slate-700">{event.tester}</div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs">
+              <div className="flex items-center gap-1.5 text-slate-500 font-semibold w-24 shrink-0">
+                <User size={14} />
+                <span>委託者</span>
+              </div>
+              <div className="font-medium break-words text-slate-700">{event.client}</div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs">
+              <div className="flex items-center gap-1.5 text-slate-500 font-semibold w-24 shrink-0">
+                <Info size={14} />
+                <span>測試備註</span>
+              </div>
+              <div className="font-medium break-words text-slate-700">{event.notes}</div>
+            </div>
+            <div className="flex items-center gap-1.5 text-xs">
+              <div className="flex items-center gap-1.5 text-slate-500 font-semibold w-24 shrink-0">
+                <Cpu size={14} />
+                <span>機台名稱</span>
+              </div>
+              <div className="font-medium break-words text-slate-700">{event.equipmentName}</div>
+            </div>
+          </div>
+          {canEdit && !isCalibration && (
+            <div className="flex items-center gap-2 mt-4 pt-4 border-t">
+              <Button size="sm" onClick={(e) => { e.stopPropagation(); onEditClick(event); }}><Pencil size={14} className="mr-2" /> 編輯</Button>
+              <Button size="sm" variant="destructive" onClick={(e) => { e.stopPropagation(); onDeleteClick(); }}><Trash2 size={14} className="mr-2" /> 刪除</Button>
+            </div>
+          )}
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+};
 
 interface GanttEvent extends MachineSchedule {
   startDate: Date;
@@ -107,6 +252,25 @@ const EquipmentSchedule: React.FC<EquipmentScheduleProps> = ({ initialSchedules,
     client: '',
     notes: '',
   });
+
+  const [activeDragId, setActiveDragId] = useState<string | null>(null);
+  const [showConflictDialog, setShowConflictDialog] = useState(false);
+  const [conflictData, setConflictData] = useState<{
+    event: GanttEvent;
+    targetEqId: string;
+    newStartDate: Date;
+    newEndDate: Date;
+    issues: string[];
+  } | null>(null);
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        delay: 200,
+        tolerance: 5,
+      },
+    })
+  );
 
   const equipmentColorMap = useMemo(() => {
     const map = new Map<string, string>();
@@ -659,6 +823,147 @@ const EquipmentSchedule: React.FC<EquipmentScheduleProps> = ({ initialSchedules,
     }
   };
 
+  const checkMoveConflicts = (eqId: string, start: Date, end: Date, ignoreEventId: string) => {
+    const targetEq = equipments.find(e => e.id === eqId);
+    if (!targetEq) return [];
+
+    const issues: string[] = [];
+    if (targetEq.status === '維修' || targetEq.status === '校正') {
+      issues.push(`機台目前狀態為「${targetEq.status}」`);
+    }
+
+    const isMulti = targetEq.isMultiChannel;
+    const ignoreBookingId = ignoreEventId;
+
+    const schedulesToCheck = schedules.filter(s => s.bookingId !== ignoreBookingId && s.id !== ignoreBookingId);
+
+    const existingBookings = schedulesToCheck.filter(s => {
+      const sDate = parse(s.date, 'yyyy-MM-dd', new Date());
+      return isValid(sDate) && s.equipmentId === eqId && isWithinInterval(sDate, { start, end });
+    });
+
+    if (existingBookings.length > 0 && !isMulti) {
+      const dates = [...new Set(existingBookings.map(b => b.date))].sort();
+      issues.push(`日期 ${dates[0]} 已被預約`);
+    }
+
+    if (targetEq.calibrationDate) {
+      try {
+        const calDate = parse(targetEq.calibrationDate, 'yyyy-MM-dd', new Date());
+        if (isValid(calDate) && isWithinInterval(calDate, { start, end })) {
+          issues.push(`包含校正日 (${targetEq.calibrationDate})`);
+        }
+      } catch (e) {}
+    }
+
+    return issues;
+  };
+
+  const performMove = async (event: GanttEvent, targetEqId: string, newStart: Date, newEnd: Date) => {
+    try {
+      const targetEq = equipments.find(e => e.id === targetEqId)!;
+      const rangeDays = eachDayOfInterval({ start: newStart, end: newEnd });
+      const bookingId = `BOOKING-${Date.now()}`;
+
+      // 1. Delete old
+      await deleteScheduleAction(event.id, true);
+
+      // 2. Save new
+      const newEntries: Partial<MachineSchedule>[] = rangeDays.map(day => ({
+        bookingId,
+        date: format(day, 'yyyy-MM-dd'),
+        equipmentId: targetEq.id,
+        equipmentName: targetEq.name,
+        workOrder: event.workOrder,
+        productName: event.productName,
+        tester: event.tester,
+        client: event.client,
+        notes: event.notes,
+      }));
+
+      let successCount = 0;
+      for (const entry of newEntries) {
+        const result = await saveMachineScheduleAction(entry, true);
+        if (result.success) successCount++;
+      }
+
+      if (successCount > 0) {
+        toast({ title: '移動成功', description: `已將排程移動至 ${targetEq.name}。` });
+
+        // Update local state
+        const savedEntries: MachineSchedule[] = newEntries.map((entry, i) => ({
+          id: `${bookingId}-${i}`,
+          bookingId,
+          date: entry.date!,
+          equipmentId: entry.equipmentId!,
+          equipmentName: entry.equipmentName!,
+          workOrder: entry.workOrder || '',
+          productName: entry.productName || '',
+          tester: entry.tester || '',
+          client: entry.client || '',
+          notes: entry.notes || '',
+          updatedAt: new Date().toISOString(),
+        }));
+
+        setSchedules(prev => {
+          const filtered = prev.filter(s => s.bookingId !== event.id && s.id !== event.id);
+          return [...filtered, ...savedEntries];
+        });
+      } else {
+        toast({ title: '移動失敗', variant: 'destructive' });
+      }
+    } catch (e) {
+      console.error('Perform move error:', e);
+      toast({ title: '移動失敗', description: '發生非預期錯誤', variant: 'destructive' });
+    }
+  };
+
+  const handleDragStart = (e: DragStartEvent) => {
+    setActiveDragId(e.active.id as string);
+  };
+
+  const handleDragEnd = (e: DragEndEvent) => {
+    setActiveDragId(null);
+    const { active, over } = e;
+    if (!over) return;
+
+    const eventId = active.id as string;
+    const overId = over.id as string; // format "cell:{eqId}:{dateStr}"
+
+    if (!overId.startsWith('cell:')) return;
+
+    const parts = overId.split(':');
+    const targetEqId = parts[1];
+    const targetDateStr = parts[2];
+
+    const ganttEvent = ganttEvents.find(ev => ev.id === eventId);
+    if (!ganttEvent) return;
+
+    const duration = ganttEvent.duration;
+    const newStartDate = parse(targetDateStr, 'yyyy-MM-dd', new Date());
+    const newEndDate = addDays(newStartDate, duration - 1);
+
+    // If no change, do nothing
+    if (ganttEvent.equipmentId === targetEqId && format(ganttEvent.startDate, 'yyyy-MM-dd') === targetDateStr) {
+      return;
+    }
+
+    const issues = checkMoveConflicts(targetEqId, newStartDate, newEndDate, eventId);
+
+    if (issues.length > 0) {
+      setConflictData({
+        event: ganttEvent,
+        targetEqId,
+        newStartDate,
+        newEndDate,
+        issues
+      });
+      setShowConflictDialog(true);
+    } else {
+      performMove(ganttEvent, targetEqId, newStartDate, newEndDate);
+    }
+  };
+
   const handlePrevMonth = () => setCurrentDate(subMonths(currentDate, 1));
   const handleNextMonth = () => setCurrentDate(addMonths(currentDate, 1));
 
@@ -962,6 +1267,12 @@ const EquipmentSchedule: React.FC<EquipmentScheduleProps> = ({ initialSchedules,
       </div>
 
       <TooltipProvider delayDuration={300}>
+      <DndContext 
+        sensors={sensors} 
+        onDragStart={handleDragStart} 
+        onDragEnd={handleDragEnd}
+        modifiers={[restrictToWindowEdges]}
+      >
       <div className="rounded-2xl border border-slate-200 shadow-sm bg-white">
         <div className="grid" style={{ gridTemplateColumns: `120px repeat(${visibleEquipments.length}, minmax(0, 1fr))` }}>
 
@@ -1004,33 +1315,37 @@ const EquipmentSchedule: React.FC<EquipmentScheduleProps> = ({ initialSchedules,
                 <span className="text-xl font-bold text-slate-700">{format(day, 'd')}</span>
               </div>
               {visibleEquipments.map((eq, eqIndex) => (
-                <Tooltip key={`cell-${eq.id}-${day.toISOString()}`}>
-                  <TooltipTrigger asChild>
-                    <div
-                      onClick={canEdit ? () => handleCellClick(day, eq) : undefined}
-                      className={cn(
-                        "relative h-24 border-b border-l border-slate-200 group transition-colors",
-                        canEdit && "cursor-pointer hover:bg-slate-50/50"
-                      )}
-                      style={{ gridColumn: eqIndex + 2, gridRow: dayIndex + 2 }}
-                    >
-                      <div className="absolute pointer-events-none inset-0 flex items-center justify-center p-1 gap-1">
-                        {canEdit && (
-                          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center w-10 h-10 bg-blue-600/90 rounded-full shadow-lg">
-                            <Plus size={24} className="text-white" />
-                          </div>
-                        )}
+                <DroppableCell 
+                  key={`cell-${eq.id}-${day.toISOString()}`}
+                  id={`cell:${eq.id}:${format(day, 'yyyy-MM-dd')}`}
+                  className={cn(
+                    "relative h-24 border-b border-l border-slate-200 group transition-colors",
+                    canEdit && "cursor-pointer hover:bg-slate-50/50"
+                  )}
+                  style={{ gridColumn: eqIndex + 2, gridRow: dayIndex + 2 }}
+                  onClick={canEdit ? () => handleCellClick(day, eq) : undefined}
+                >
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className="w-full h-full">
+                        <div className="absolute pointer-events-none inset-0 flex items-center justify-center p-1 gap-1">
+                          {canEdit && (
+                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center w-10 h-10 bg-blue-600/90 rounded-full shadow-lg">
+                              <Plus size={24} className="text-white" />
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </TooltipTrigger>
-                  <TooltipContent sideOffset={4} className="max-w-xs space-y-1.5 p-3 pointer-events-none z-50">
-                    <p className="font-bold text-sm text-slate-800 border-b border-slate-100 pb-1">{eq.name}</p>
-                    <div className="flex flex-col gap-1 text-xs text-slate-600">
-                      <p className="font-mono text-[11px]"><span className="font-bold text-slate-500 mr-1">編號</span> {eq.id}</p>
-                      {eq.remark && <p className="leading-relaxed"><span className="font-bold text-slate-500 mr-1">規格</span> {eq.remark}</p>}
-                    </div>
-                  </TooltipContent>
-                </Tooltip>
+                    </TooltipTrigger>
+                    <TooltipContent sideOffset={4} className="max-w-xs space-y-1.5 p-3 pointer-events-none z-50">
+                      <p className="font-bold text-sm text-slate-800 border-b border-slate-100 pb-1">{eq.name}</p>
+                      <div className="flex flex-col gap-1 text-xs text-slate-600">
+                        <p className="font-mono text-[11px]"><span className="font-bold text-slate-500 mr-1">編號</span> {eq.id}</p>
+                        {eq.remark && <p className="leading-relaxed"><span className="font-bold text-slate-500 mr-1">規格</span> {eq.remark}</p>}
+                      </div>
+                    </TooltipContent>
+                  </Tooltip>
+                </DroppableCell>
               ))}
             </React.Fragment>
           ))}
@@ -1084,48 +1399,32 @@ const EquipmentSchedule: React.FC<EquipmentScheduleProps> = ({ initialSchedules,
               };
 
               return (
-                <div key={event.id} style={containerStyle}>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <div style={eventStyle} className="m-0 p-2 rounded-lg border-2 flex flex-col justify-start overflow-hidden cursor-pointer group">
-                        <p className="font-bold text-xs truncate" style={{ color }}>{event.workOrder}</p>
-                        <p className="text-xs truncate" style={{ color: `${color}dd` }}>{event.productName}</p>
-                        <p className="text-xs truncate mt-auto pt-1" style={{ color: `${color}cc` }}>
-                          {event.client}
-                        </p>
-                      </div>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-80" side="right" align="start">
-                      <div className="space-y-3">
-                        <h4 className="font-bold">{event.productName}</h4>
-                        <InfoItem icon={<ClipboardList size={14} />} label="工單號碼" value={event.workOrder} />
-                        <InfoItem icon={<User size={14} />} label="測試人員" value={event.tester} />
-                        <InfoItem icon={<User size={14} />} label="委託者" value={event.client} />
-                        <InfoItem icon={<Info size={14} />} label="測試備註" value={event.notes} />
-                        <InfoItem icon={<Cpu size={14} />} label="機台名稱" value={event.equipmentName} />
-                      </div>
-                      {canEdit && event.workOrder !== '校正' && (
-                        <div className="flex items-center gap-2 mt-4 pt-4 border-t">
-                          <Button size="sm" onClick={() => handleEditClick(event)}><Pencil size={14} className="mr-2" /> 編輯</Button>
-                          <Button size="sm" variant="destructive" onClick={async () => {
-                            const result = await deleteScheduleAction(event.id, true);
-                            if (result.success) {
-                              setSchedules(prev => prev.filter(s => s.bookingId !== event.id && s.id !== event.id));
-                              toast({ title: '刪除成功', description: '排程已刪除。' });
-                            } else {
-                              toast({ title: '刪除失敗', variant: 'destructive' });
-                            }
-                          }}><Trash2 size={14} className="mr-2" /> 刪除</Button>
-                        </div>
-                      )}
-                    </PopoverContent>
-                  </Popover>
-                </div>
+                <DraggableEventCard
+                  key={event.id}
+                  event={event}
+                  style={containerStyle}
+                  eventStyle={eventStyle}
+                  color={color}
+                  canEdit={canEdit}
+                  isCalibration={isCalibration}
+                  onEditClick={handleEditClick}
+                  onDeleteClick={async () => {
+                    const result = await deleteScheduleAction(event.id, true);
+                    if (result.success) {
+                      setSchedules(prev => prev.filter(s => s.bookingId !== event.id && s.id !== event.id));
+                      toast({ title: '刪除成功', description: '排程已刪除。' });
+                    } else {
+                      toast({ title: '刪除失敗', variant: 'destructive' });
+                    }
+                  }}
+                  isDragging={activeDragId === event.id}
+                />
               );
             })}
           </div>
         </div>
       </div>
+      </DndContext>
       </TooltipProvider>
 
 
@@ -1262,6 +1561,39 @@ const EquipmentSchedule: React.FC<EquipmentScheduleProps> = ({ initialSchedules,
           </div>
         </div>
       )}
+
+      {/* Conflict Confirmation Dialog */}
+      <AlertDialog open={showConflictDialog} onOpenChange={setShowConflictDialog}>
+        <AlertDialogContent className="rounded-[2rem] max-w-md">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="text-xl font-black text-slate-800 flex items-center gap-2">
+              <Info className="text-amber-500" size={24} />
+              偵測到日期衝突
+            </AlertDialogTitle>
+            <AlertDialogDescription className="space-y-4 pt-2">
+              <p className="text-slate-600 font-medium">新區間與現有排程存在以下問題，確定要移動嗎？</p>
+              <div className="bg-amber-50 border border-amber-100 rounded-2xl p-4 space-y-2">
+                {conflictData?.issues.map((issue, i) => (
+                  <p key={i} className="text-sm font-bold text-amber-700 flex items-center gap-2">• {issue}</p>
+                ))}
+              </div>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter className="gap-2 sm:gap-0">
+            <AlertDialogCancel className="rounded-xl font-bold">取消</AlertDialogCancel>
+            <AlertDialogAction 
+              onClick={() => {
+                if (conflictData) {
+                  performMove(conflictData.event, conflictData.targetEqId, conflictData.newStartDate, conflictData.newEndDate);
+                }
+              }}
+              className="bg-slate-900 text-white hover:bg-blue-600 rounded-xl font-bold"
+            >
+              確定移動
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 };
