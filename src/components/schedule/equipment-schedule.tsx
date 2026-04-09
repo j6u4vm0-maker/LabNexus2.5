@@ -962,7 +962,7 @@ const EquipmentSchedule: React.FC<EquipmentScheduleProps> = ({ initialSchedules,
       </div>
 
       <TooltipProvider delayDuration={300}>
-      <div className="overflow-auto max-h-[calc(100vh-220px)] rounded-2xl border border-slate-200 shadow-sm bg-white">
+      <div className="rounded-2xl border border-slate-200 shadow-sm bg-white">
         <div className="grid" style={{ gridTemplateColumns: `120px repeat(${visibleEquipments.length}, minmax(0, 1fr))` }}>
 
           {/* Header Row */}
